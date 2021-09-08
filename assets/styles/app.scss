@@ -1,0 +1,95 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Risque&display=swap');
+
+$primary: #0074d9;
+$danger: #ff4136;
+$background_color:#d6d6ed;
+$main-color: #4b191d;
+$font-family-base:'Patrick Hand SC', cursive;
+$font-family-secondary: 'Risque', cursive;
+$navbar-dark-brand-color: #ffffff;
+$navbar-dark-color:#ffffff;
+$navbar-dark-active-color: #ffffff;
+$navbar-dark-toggler-icon-bg: #ffffff;
+$navbar-inverse-toggler-bg: #ffffff;
+$footer-color: #bbadae;
+
+/* general */
+html {
+    position:relative;
+    min-height: 100%;
+  }
+  
+  body {
+    background-color: $background_color;
+    font-family: $font-family-base;
+    font-size: 1.2rem;
+  }
+  body a {
+    color: $main-color;
+    text-decoration: none;
+  }
+  
+  body a:hover {
+    color: black;
+  }
+  
+   /*base.html.twig container to fix footer above content */
+  .allPageContainer {
+    margin-bottom: 150px;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  /*navbar*/
+  
+  nav {
+    background-color: $main-color;
+    font-family: $font-family-secondary;
+  }
+  
+  .navbar-dark .navbar-brand {
+    color: $navbar-dark-brand-color;
+  }
+  .navbar-dark .navbar-nav .nav-link{
+    color: $navbar-dark-color;
+  }
+  
+  .navbar-dark .navbar-toggler {
+    color: transparent;
+  }
+  
+  .navbar-brand {
+    font-size: 3rem;
+  }
+  
+  .nav-link {
+    font-size: 1.5rem;
+  }
+  
+  /*titles*/
+  
+  .title {
+    font-family: $font-family-secondary;
+    color: $main-color;
+  }
+  /*footer*/
+  footer {
+    width: 100%;
+    background-color: $footer-color;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+  }
+  
+  footer a {
+    color: $navbar-dark-color;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: $main-color;
+    text-decoration: none;
+  }
