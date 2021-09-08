@@ -17,6 +17,12 @@
         <script src="/build/app.js"></script>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            {% include'_navbar.html.twig' %}
+        </header>
+        <div class="container mt-5 allPageContainer">
+            {% block body %}{% endblock %}
+        </div>
+        
     </body>
 </html>
