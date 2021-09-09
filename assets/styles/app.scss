@@ -75,6 +75,17 @@ html {
     font-family: $font-family-secondary;
     color: $main-color;
   }
+
+  .subtitle {
+    color: $main-color;
+    font-size: 1.5rem;
+  }
+
+  /*containers*/
+  .programContainer {
+    text-align: justify;
+  }
+
   /*footer*/
   footer {
     width: 100%;
