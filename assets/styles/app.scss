@@ -21,86 +21,96 @@ html {
     min-height: 100%;
   }
   
-  body {
-    background-color: $background_color;
-    font-family: $font-family-base;
-    font-size: 1.2rem;
-  }
-  body a {
-    color: $main-color;
-    text-decoration: none;
-  }
-  
-  body a:hover {
-    color: black;
-  }
-  
-   /*base.html.twig container to fix footer above content */
-  .allPageContainer {
-    margin-bottom: 150px;
-  }
-  
-  .flex {
-    display: flex;
-  }
-  /*navbar*/
-  
-  nav {
-    background-color: $main-color;
-    font-family: $font-family-secondary;
-  }
-  
-  .navbar-dark .navbar-brand {
-    color: $navbar-dark-brand-color;
-  }
-  .navbar-dark .navbar-nav .nav-link{
-    color: $navbar-dark-color;
-  }
-  
-  .navbar-dark .navbar-toggler {
-    color: transparent;
-  }
-  
-  .navbar-brand {
-    font-size: 3rem;
-  }
-  
-  .nav-link {
-    font-size: 1.5rem;
-  }
-  
-  /*titles*/
-  
-  .title {
-    font-family: $font-family-secondary;
-    color: $main-color;
-  }
+body {
+  background-color: $background_color;
+  font-family: $font-family-base;
+  font-size: 1.2rem;
+}
+body a {
+  color: $main-color;
+  text-decoration: none;
+}
 
-  .subtitle {
-    color: $main-color;
-    font-size: 1.5rem;
-  }
+body a:hover {
+  color: black;
+}
 
-  /*containers*/
-  .programContainer {
-    text-align: justify;
-  }
+.flex {
+  display: flex;
+}
 
-  /*footer*/
-  footer {
-    width: 100%;
-    background-color: $footer-color;
-    position: absolute;
-    bottom: 0;
-    height: 50px;
-  }
-  
-  footer a {
-    color: $navbar-dark-color;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    color: $main-color;
-    text-decoration: none;
-  }
+.returnLink {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  color: $main-color;
+}
+
+  /*base.html.twig container to fix footer above content */
+.allPageContainer {
+  margin-bottom: 150px;
+}
+
+.flex {
+  display: flex;
+}
+/*navbar*/
+
+nav {
+  background-color: $main-color;
+  font-family: $font-family-secondary;
+}
+
+.navbar-dark .navbar-brand {
+  color: $navbar-dark-brand-color;
+}
+.navbar-dark .navbar-nav .nav-link{
+  color: $navbar-dark-color;
+}
+
+.navbar-dark .navbar-toggler {
+  color: transparent;
+}
+
+.navbar-brand {
+  font-size: 3rem;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+}
+
+/*titles*/
+
+.title {
+  font-family: $font-family-secondary;
+  color: $main-color;
+}
+
+.subtitle {
+  color: $main-color;
+  font-size: 1.5rem;
+}
+
+/*containers*/
+.justify {
+  text-align: justify;
+}
+
+/*footer*/
+footer {
+  width: 100%;
+  background-color: $footer-color;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+}
+
+footer a {
+  color: $navbar-dark-color;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: $main-color;
+  text-decoration: none;
+}

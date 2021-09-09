@@ -1,7 +1,23 @@
 {% extends "base.html.twig" %}
 
-{% block title %}WS2-programme {{id}}{% endblock %}
+{% block title %}WS2 - {{program.title}}{% endblock %}
 
 {% block body %}
-   <h1>Programme n°{{id}}</h1>
+<div class="container mt-5">
+   <div class="media flex flex-row">
+      <div class="poster">
+         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+      </div>
+      <div class="media-body ms-5">
+         <h1 class="title mt-0">{{ program.title }}</h1>
+         <p>{{ program.summary }}</p>
+         <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
+      </div>
+   </div>
+</div>
+<div class="returnLink">
+   <a href="{{ path('program_index') }}">
+      Retour à la liste des programmes
+   </a>
+</div>
 {% endblock %}

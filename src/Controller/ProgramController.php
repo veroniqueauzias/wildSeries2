@@ -30,14 +30,22 @@ class ProgramController extends AbstractController
 
 
     /**
-     * @Route("/{id}", methods={"GET"}, requirements={"page"="\d+"}, name="show")
+     * @Route("/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="show")
      * @return Response
      */
     public function show(int $id) : Response
     {
-        return $this->render('program/show.html.twig', [
-            'id' => $id,
-         ]);
+        $program = $this->getDoctrine()
+        ->getRepository(Program::class)
+        ->findOneBy(['id' => $id]);
+    if (!$program) {
+        throw $this->createNotFoundException(
+            'Aucune série avec l\'identifiant : '.$id.' n\'a été trouvé.'
+        );
+    }
+    return $this->render('program/show.html.twig', [
+        'program' => $program,
+    ]);
     }
 
 }

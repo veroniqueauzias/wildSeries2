@@ -3,18 +3,19 @@
 {% block title %}WS2-programmes{% endblock %}
 
 {% block body %}
+<div class="container mt-5">
    <h1 class="title mb-5">Liste des séries:</h1>
-
    {% for program in programs %}
-   <div class="programContainer">
        <h2 class="subtitle">{{ loop.index }} - {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-       <p>{{ program.summary }}</p>
-   </div>
-{% else %}
-   Aucune série trouvée.
-{% endfor %}
+       <p class="justify">{{ program.summary }}</p>
+   {% else %}
+      Aucune série trouvée.
+   {% endfor %}
+</div>
+<div class="returnLink">
+   <a href="{{ path('app_index') }}">
+      Retour à l'accueil
+   </a>
+</div>
 
-<a href="{{ path('app_index') }}">
-   Retour à l'accueil
-</a>
 {% endblock %} 
