@@ -4,13 +4,13 @@
 
 {% block body %}
 <div class="container mt-5">
-   <div class="media flex flex-row">
+   <div class="programDetails flex">
       <div class="poster">
-         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+         <img class="posterImg align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
       </div>
-      <div class="media-body ms-5">
+      <div class="media-body">
          <h1 class="title mt-0">{{ program.title }}</h1>
-         <p>{{ program.summary }}</p>
+         <p class="justify">{{ program.summary }}</p>
          <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
       </div>
    </div>

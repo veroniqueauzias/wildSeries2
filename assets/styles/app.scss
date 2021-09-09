@@ -114,3 +114,27 @@ footer a:hover {
   color: $main-color;
   text-decoration: none;
 }
+
+.media-body {
+  margin-left: 2rem;
+}
+
+@media (max-width: 992px) {
+
+  .programDetails {
+    flex-direction: column;
+  }
+  .posterImg  {
+    height: 20rem;
+  }
+
+  .media-body {
+    margin-top: 2rem;
+    margin-left: 0px;
+  }
+
+  .poster {
+    display: flex;
+    justify-content: center;
+  }
+}
