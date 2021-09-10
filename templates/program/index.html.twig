@@ -1,7 +1,21 @@
 {% extends "base.html.twig" %}
 
-{% block title %}WSC-programmes{% endblock %}
+{% block title %}WS2-programmes{% endblock %}
 
 {% block body %}
-   <h1>{{website}} index</h1>
-{% endblock %}
+<div class="container mt-5">
+   <h1 class="title mb-5">Liste des séries:</h1>
+   {% for program in programs %}
+      <a href="{{path('program_show', { 'id': program.id }) }}"><h2 class="subtitle">{{ loop.index }} - {{ program.title }} - Catégorie : {{ program.category.name }}</h2></a>
+       <p class="justify">{{ program.summary }}</p>
+   {% else %}
+      Aucune série trouvée.
+   {% endfor %}
+</div>
+<div class="returnLink">
+   <a href="{{ path('app_index') }}">
+      Retour à l'accueil
+   </a>
+</div>
+
+{% endblock %} 
