@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}WS2 - {{category.name}}{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="title mt-0">{{ category.name }}</h1>
+    {% for program in programs %}
+    <a href="{{path('program_show', { 'id': program.id }) }}"><h2 class="subtitle">{{program.id}} - {{program.title}}</h2></a>
+        <p class="justify">{{program.summary}}</p>
+    {% else %}
+      Aucune série trouvée.
+   {% endfor %}
+         
+</div>
+<div class="returnLink">
+   <a href="{{ path('program_index') }}">
+      Retour à la liste des programmes
+   </a>
+</div>
+{% endblock %}
