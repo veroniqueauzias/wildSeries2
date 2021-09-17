@@ -91,10 +91,17 @@ nav {
   font-size: 1.5rem;
 }
 
-/*containers*/
+/*end titles*/
+
 .justify {
   text-align: justify;
 }
+
+.posterImg  {
+    height: 50rem;
+    width: 30rem;
+  }
+
 
 /*footer*/
 footer {
@@ -124,8 +131,10 @@ footer a:hover {
   .programDetails {
     flex-direction: column;
   }
+
   .posterImg  {
     height: 20rem;
+    width: 5rem;
   }
 
   .media-body {
