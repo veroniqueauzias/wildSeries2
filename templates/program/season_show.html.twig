@@ -22,7 +22,7 @@
                  <h6 class="card-subtitle mb-2 text-muted">episode {{episode.number}}</h6>
                  <!-- use string-extra got from composer to get twig truncate filter to use with u filter-->
                  <p class="card-text">{{episode.synopsis | u.truncate(100, '...')}}</p>
-                 <a href="#" class="card-link">Voir plus</a>
+                 <a href="{{path('program_episode_show', { 'programId': program.id, 'seasonId':season.id, 'episodeId':episode.id }) }}" class="card-link">Voir plus</a>
                </div>
              </div>
             {% endfor %}
