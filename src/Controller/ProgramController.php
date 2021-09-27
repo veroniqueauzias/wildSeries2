@@ -34,11 +34,9 @@ class ProgramController extends AbstractController
      * @Route("/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="show")
      * @return Response
      */
-    public function show(int $id) : Response
+    public function show(Program $program) : Response
     {
-        $program = $this->getDoctrine()
-        ->getRepository(Program::class)
-        ->findOneBy(['id' => $id]);
+       
     if (!$program) {
         throw $this->createNotFoundException(
             'Aucune série avec l\'identifiant '.$id.' n\'a été trouvé.'
@@ -55,24 +53,18 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{programId}/seasons/{seasonId}", methods={"GET"}, requirements={"programId"="\d+", "seasonId"="\d+"}, name="season_show")
+     * @Route("/{program}/seasons/{season}", methods={"GET"}, requirements={"programId"="\d+", "seasonId"="\d+"}, name="season_show")
      * @return Response
      */
-    public function showSeason(int $programId, int $seasonId) : Response
+    public function showSeason(Program $program, Season $season) : Response
     {
-        //get program accordong to programId in url
-        $program = $this->getDoctrine()
-        ->getRepository(Program::class)
-        ->findOneBy(['id' => $programId]);
+        
     if (!$program) {
         throw $this->createNotFoundException(
             'Aucune série avec l\'identifiant '.$programId.' n\'a été trouvée.'
         );
     }
-        //get season according to season id in url
-        $season = $this->getDoctrine()
-        ->getRepository(Season::class)
-        ->findOneBy(['id' => $seasonId]);
+    
     if (!$season) {
         throw $this->createNotFoundException(
             'Aucune saison avec l\'identifiant '.$seasonId.' n\'a été trouvée.'

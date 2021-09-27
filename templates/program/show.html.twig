@@ -21,7 +21,7 @@
                  <h6 class="card-subtitle mb-2 text-muted">année : {{season.year}}</h6>
                  <!-- use string-extra got from composer to get twig truncate filter to use with u filter-->
                  <p class="card-text">{{season.description | u.truncate(100, '...')}}</p>
-                 <a href="{{path('program_season_show', { 'programId': program.id, 'seasonId':season.id }) }}" class="card-link">Voir plus</a>
+                 <a href="{{path('program_season_show', { 'program': program.id, 'season':season.id }) }}" class="card-link">Voir plus</a>
                </div>
              </div>
             {% endfor %}
