@@ -32,6 +32,9 @@
 <div class="returnLink">
    <a href="{{ path('program_index') }}">
       Retour à la liste des séries
+   </a><br />
+   <a href="{{path('category_show', {'categoryName' : program.category.name}) }}">
+      Retour à la liste des séries de la catégorie {{ program.category.name }}
    </a>
 </div>
 {% endblock %}
