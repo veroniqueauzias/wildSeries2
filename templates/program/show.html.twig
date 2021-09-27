@@ -12,6 +12,20 @@
          <h1 class="title mt-0">{{ program.title }}</h1>
          <p class="justify">{{ program.summary }}</p>
          <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
+         <p><span class="subtitle">Saisons :</p>
+         <div class="flex flex-row">
+            {% for season in seasons %}
+            <div class="card" style="width: 18rem;">
+               <div class="card-body">
+                 <h5 class="card-title">Saison {{season.number}}</h5>
+                 <h6 class="card-subtitle mb-2 text-muted">année : {{season.year}}</h6>
+                 <!-- use string-extra got from composer to get twig truncate filter to use with u filter-->
+                 <p class="card-text">{{season.description | u.truncate(100, '...')}}</p>
+                 <a href="#" class="card-link">Voir plus</a>
+               </div>
+             </div>
+            {% endfor %}
+         </div>
       </div>
    </div>
 </div>

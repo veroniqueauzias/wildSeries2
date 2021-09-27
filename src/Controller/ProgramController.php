@@ -40,11 +40,16 @@ class ProgramController extends AbstractController
         ->findOneBy(['id' => $id]);
     if (!$program) {
         throw $this->createNotFoundException(
-            'Aucune série avec l\'identifiant : '.$id.' n\'a été trouvé.'
+            'Aucune série avec l\'identifiant '.$id.' n\'a été trouvé.'
         );
     }
+        //get seasons for the selected program
+        $seasons = $program->getSeasons();
+    
+
     return $this->render('program/show.html.twig', [
         'program' => $program,
+        'seasons' => $seasons,
     ]);
     }
 
