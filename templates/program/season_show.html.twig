@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}WS2 - {{program.title}}{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="programDetails flex">
+       <div class="poster">
+          <img class="posterImg align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+       </div>
+       <div class="media-body">
+          <h1 class="title mt-0">{{ program.title }} - Saison {{season.number}} </h1>
+          <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
+          <p>{{season.description}}</p>  
+          
+       </div>
+    </div>
+ </div>
+ <div class="returnLink">
+    <a href="{{ path('program_show', { 'id': program.id })}}">
+       Retour à la fiche de la série
+    </a>
+ </div>
+{% endblock %}
