@@ -52,7 +52,7 @@ class ProgramController extends AbstractController
             // Get the Entity Manager
             $entityManager = $this->getDoctrine()->getManager();
             // Persist Category Object
-            $entityManager->persist($category);
+            $entityManager->persist($program);
             // Flush the persisted object
             $entityManager->flush();
             // Finally redirect to categories list
