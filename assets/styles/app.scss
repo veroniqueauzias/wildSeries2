@@ -33,7 +33,7 @@ body a {
 }
 
 body a:hover {
-  color: black;
+  color: rgba($main-color, 0.75);
 }
 
 .flex {
@@ -92,6 +92,10 @@ nav {
   font-size: 1.5rem;
 }
 
+.subtitle:hover {
+  color : rgba($main-color, 0.75);
+}
+
 /*end titles*/
 
 .justify {
@@ -142,11 +146,13 @@ footer a:hover {
 .btn-primary {
   background-color: $main-color;
   border : $main-color;
+  color: #ffffff
 }
 
 .btn-primary:hover {
   background-color: rgba($main-color, 0.75);
   border : $main-color;
+  color: #ffffff
 }
 
 .typeLabel {

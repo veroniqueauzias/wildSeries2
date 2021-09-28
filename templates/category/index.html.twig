@@ -4,12 +4,15 @@
 
 {% block body %}
 <div class="container mt-5">
-   <h1 class="title mb-5">Liste des categories:</h1>
-   {% for category in categories %}
-       <a href="{{path('category_show', {'categoryName' : category.name}) }}"><h2 class="subtitle">{{ loop.index }} - {{ category.name }}</h2></a>
-   {% else %}
-      Aucune catégorie trouvée.
-   {% endfor %}
+   <h1 class="title mb-5 text-center">Liste des categories:</h1>
+   <div class="flex flex-column align-items-center">
+      {% for category in categories %}
+      <a href="{{path('category_show', {'categoryName' : category.name}) }}"><h2 class="subtitle">{{ loop.index }} - {{ category.name }}</h2></a>
+  {% else %}
+     Aucune catégorie trouvée.
+  {% endfor %}
+   <a href="{{path('category_new')}}" class="btn btn-primary mt-3">Ajouter une catégorie</a>
+   </div>
 </div>
 <div class="returnLink">
    <a href="{{ path('app_index') }}">
