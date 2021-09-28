@@ -13,7 +13,11 @@
         <div class="row flex justify-content-center">
             <button type="submit" class="btn btn-primary col-2 mt-3">Ajouter</button>
         </div>
-        
         {{ form_end(form) }}
 </div>
+<div class="returnLink">
+    <a href="{{ path('category_index') }}">
+       Retour à la liste des categories
+    </a>
+ </div>
 {% endblock %}
