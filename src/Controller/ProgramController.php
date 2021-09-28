@@ -9,6 +9,8 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\ProgramType;
 
 /**
 * @Route("/program", name="program_")
@@ -31,6 +33,36 @@ class ProgramController extends AbstractController
          );
     }
 
+    /**
+     * The controller for the program add form
+     *
+     * @Route("/ajouter", name="new")
+     */
+    public function new(Request $request): Response
+    {
+        // Create a new Program Object
+        $program = new Program();
+        // Create the associated Form
+        $form = $this->createForm(ProgramType::class, $program);
+        // Get data from HTTP request
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            // Deal with the submitted data
+            // Get the Entity Manager
+            $entityManager = $this->getDoctrine()->getManager();
+            // Persist Category Object
+            $entityManager->persist($category);
+            // Flush the persisted object
+            $entityManager->flush();
+            // Finally redirect to categories list
+            return $this->redirectToRoute('program_index');
+        }
+        // Render the form
+        return $this->render('program/new.html.twig', [
+            "form" => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="show")
