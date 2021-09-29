@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Risque&display=swap');
 
-$primary: #0074d9;
+$primary: #4b191d;
 $danger: #ff4136;
 $background_color:#d6d6ed;
 $main-color: #4b191d;
@@ -33,7 +33,7 @@ body a {
 }
 
 body a:hover {
-  color: black;
+  color: rgba($main-color, 0.75);
 }
 
 .flex {
@@ -92,6 +92,10 @@ nav {
   font-size: 1.5rem;
 }
 
+.subtitle:hover {
+  color : rgba($main-color, 0.75);
+}
+
 /*end titles*/
 
 .justify {
@@ -135,6 +139,24 @@ footer a:hover {
 }
 .card-title {
   color: $main-color;
+}
+
+/*forms*/
+
+.btn-primary {
+  background-color: $main-color;
+  border : $main-color;
+  color: #ffffff
+}
+
+.btn-primary:hover {
+  background-color: rgba($main-color, 0.75);
+  border : $main-color;
+  color: #ffffff
+}
+
+.typeLabel {
+  color: $primary;
 }
 
 @media (max-width: 992px) {
