@@ -23,7 +23,7 @@
                 <td class="col-md-2">{{ season.program.title}}</td>
                 <td class="col-md-1 text-center">{{ season.number }}</td>
                 <td class= "col-md-1 text-center">{{ season.year }}</td>
-                <td class="col-md-6">{{ season.description| u.truncate(200, '...') }}</td>
+                <td class="col-md-6">{{ season.description| u.truncate(100, '...') }}</td>
                 <td class="col-md-2">
                     <a href="{{ path('season_show', {'id': season.id}) }}">voir</a><br />
                     <a href="{{ path('season_edit', {'id': season.id}) }}">modifier</a>
