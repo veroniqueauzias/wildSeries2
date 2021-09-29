@@ -1,39 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Season index{% endblock %}
+{% block title %}WS2 - saisons{% endblock %}
 
 {% block body %}
-    <h1>Season index</h1>
+<div class="container">
+
+    <h1 class="title mt-5">Liste des saisons</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>Year</th>
-                <th>Description</th>
+            <tr class="tableTitles">
+                <th>Série</th>
+                <th class="text-center">Saison N°</th>
+                <th class="text-center">Année</th>
+                <th class="text-center">Résumé</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for season in seasons %}
             <tr>
-                <td>{{ season.id }}</td>
-                <td>{{ season.number }}</td>
-                <td>{{ season.year }}</td>
-                <td>{{ season.description }}</td>
-                <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                <td class="col-md-2">{{ season.program.title}}</td>
+                <td class="col-md-1 text-center">{{ season.number }}</td>
+                <td class= "col-md-1 text-center">{{ season.year }}</td>
+                <td class="col-md-6">{{ season.description| u.truncate(200, '...') }}</td>
+                <td class="col-md-2">
+                    <a href="{{ path('season_show', {'id': season.id}) }}">voir</a><br />
+                    <a href="{{ path('season_edit', {'id': season.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune saison trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('season_new') }}">Create new</a>
+    <a href="{{ path('season_new') }}" class="btn btn-primary mt-3">Nouvelle saison</a>
+</div>
 {% endblock %}
