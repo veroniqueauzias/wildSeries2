@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WS2 - saisons{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="title mt-5 text-center">Ajouter une saison</h1>
+    {{ include('season/_form.html.twig') }}
+</div>
+    <a href="{{ path('season_index') }}" class="returnLink">Retour à la liste des saisons</a>
+{% endblock %}
