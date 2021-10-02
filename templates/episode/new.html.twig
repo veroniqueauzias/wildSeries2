@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Episode{% endblock %}
+{% block title %}WS2 - episodes{% endblock %}
 
 {% block body %}
-    <h1>Create new Episode</h1>
+<div class="container">
+    <h1 class="title mt-5 text-center">Ajouter un épisode</h1>
 
     {{ include('episode/_form.html.twig') }}
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+</div>
+   
+    <a class="returnLink" href="{{ path('episode_index') }}">Retour à la liste des épisodes</a>
 {% endblock %}
