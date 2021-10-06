@@ -36,7 +36,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+  {#pagination#}
+  {% include '_paging.html.twig' %}
     <a href="{{ path('season_new') }}" class="btn btn-primary mt-3">Nouvelle saison</a>
 </div>
 {% endblock %}

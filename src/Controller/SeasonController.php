@@ -18,10 +18,22 @@ class SeasonController extends AbstractController
     /**
      * @Route("/", name="season_index", methods={"GET"})
      */
-    public function index(SeasonRepository $seasonRepository): Response
-    {
+    public function index(SeasonRepository $seasonRepository, Request $request): Response
+    { 
+        //define pagination elements
+        //number of element par page
+        $limit = 10;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
+        // get list of episodes for each page.
+        $seasons = $seasonRepository->getPaginatedSeasons($limit, $page);
+        //get total episode to calculate number of pages
+        $total = $seasonRepository->getTotalSeasons();
         return $this->render('season/index.html.twig', [
-            'seasons' => $seasonRepository->findAll(),
+            'limit' => $limit,
+            'page' => $page,
+            'seasons' => $seasons,
+            'total' => $total,
         ]);
     }
 

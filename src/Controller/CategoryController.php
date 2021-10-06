@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use App\Entity\Program;
+use App\Repository\CategoryRepository;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 /**
@@ -18,16 +19,24 @@ class CategoryController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(): Response
+    public function index(Request $request, CategoryRepository $categoryRepository): Response
     {
-        $categories = $this->getDoctrine()
-             ->getRepository(Category::class)
-             ->findAll();
-
-         return $this->render(
-             'category/index.html.twig',
-             ['categories' => $categories]
-         );
+        //define pagination elements
+        //number of element par page
+        $limit = 10;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
+        // get list of episodes for each page.
+        $categories = $categoryRepository->getPaginatedCategories($limit, $page);
+        //get total episode to calculate number of pages
+        $total = $categoryRepository->getTotalCategories();
+        
+         return $this->render('category/index.html.twig',[
+                'categories' => $categories,
+                'total' => $total,
+                'limit' => $limit,
+                'page' => $page,
+             ]);
     }
 
     /**

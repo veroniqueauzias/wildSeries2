@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode index{% endblock %}
+{% block title %}WS2 - episodes{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -37,6 +37,10 @@
         {% endfor %}
         </tbody>
     </table>
+
+   {#pagination#}
+   {% include '_paging.html.twig' %}
+   
     <a href="{{ path('episode_new') }}" class="btn btn-primary mt-3">Nouvel épisode</a>
 </div>
 

@@ -11,6 +11,10 @@
    {% else %}
       Aucune série trouvée.
    {% endfor %}
+
+   {#pagination#}
+   {% include '_paging.html.twig' %}
+   
    <a href="{{path('program_new')}}" class="btn btn-primary mt-3">Ajouter une série</a>
 </div>
 <div class="returnLink">
