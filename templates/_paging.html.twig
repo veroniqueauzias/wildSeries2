@@ -1,4 +1,5 @@
 {% if total > 0 %}
+<div class="mt-5">
    {# number of pages: total nb of episodes / limit rounded to upper number #}
    {% set pages = ((total/limit)|round(0,'ceil')) %}
    <ul class="pagination">
@@ -29,4 +30,5 @@
            </a>
        </li>
    </ul>
+</div>
 {% endif %}

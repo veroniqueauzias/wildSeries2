@@ -142,6 +142,14 @@ footer a:hover {
   color: $main-color;
 }
 
+.categCard {
+  width: 20%;
+}
+
+.categCard:hover, .categCardSub :hover{
+  background-color: rgba($main-color, 0.15)
+}
+
 /*forms*/
 
 .btn-primary {
@@ -199,6 +207,13 @@ li.page-item.active {
 {
   background-color: rgba($main-color, 0.05);
   color: #ffffff;
+}
+
+/*images*/
+
+.categIcon {
+  width: 50px;
+  height: 50px;
 }
 
 @media (max-width: 992px) {
