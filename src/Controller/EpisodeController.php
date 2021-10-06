@@ -18,10 +18,22 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/", name="episode_index", methods={"GET"})
      */
-    public function index(EpisodeRepository $episodeRepository): Response
-    {
+    public function index(EpisodeRepository $episodeRepository, Request $request): Response
+    {   //define pagination elements
+        //number of element par page
+        $limit = 10;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get récupère no de page en GET, renvoie un string, on force en int
+        // get list of episodes for each page.
+        $episodes = $episodeRepository->getPaginatedEpisodes($limit, $page);
+        //get total episode to calculate number of pages
+        $total = $episodeRepository->getTotalEpisodes();
+
         return $this->render('episode/index.html.twig', [
-            'episodes' => $episodeRepository->findAll(),
+            'episodes' => $episodes,
+            'total' => $total,
+            'limit' => $limit,
+            'page' => $page,
         ]);
     }
 

@@ -1,0 +1,32 @@
+{% if total > 0 %}
+   {# nombre de pages: total / limit arrondi à l'entier supérieur #}
+   {% set pages = ((total/limit)|round(0,'ceil')) %}
+   <ul class="pagination">
+       <li class="{{ (page == 1) ? 'page-item disabled' : 'page-item' }}">
+           <a class="page-link" href="?page=1">
+               <<
+           </a>
+       </li>
+       <li class="{{ (page == 1) ? 'page-item disabled' : 'page-item' }}">
+           <a class="page-link" href="{{ (page>1) ? '?page=' ~ (page-1) : '' }}">
+               <
+           </a>
+       </li>
+
+       {% for item in 1..pages%} {# de 1 à nombre de pages #}
+           <li class="{{ (page == item) ? 'page-item active' : 'page-item' }}">
+               <a class="page-link" href="?page={{ item }}">{{ item }}</a>
+           </li>
+       {% endfor %}
+       <li class="{{ (page == pages) ? 'page-item disabled' : 'page-item' }}">
+           <a class="page-link" href="{{ (page<pages) ? '?page=' ~ (page+1) : '' }}">
+               >
+           </a>
+       </li>
+       <li class="{{ (page == pages) ? 'page-item disabled' : 'page-item' }}">
+           <a class="page-link" href="?page={{ pages }}">
+               >>
+           </a>
+       </li>
+   </ul>
+{% endif %}

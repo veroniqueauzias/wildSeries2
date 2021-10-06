@@ -73,7 +73,7 @@ class ProgramController extends AbstractController
        
     if (!$program) {
         throw $this->createNotFoundException(
-            'Aucune série avec l\'identifiant '.$id.' n\'a été trouvé.'
+            'Aucune série n\'a été trouvée.'
         );
     }
         //get seasons for the selected program
@@ -95,13 +95,13 @@ class ProgramController extends AbstractController
         
     if (!$program) {
         throw $this->createNotFoundException(
-            'Aucune série avec l\'identifiant '.$programId.' n\'a été trouvée.'
+            'Aucune série  n\'a été trouvée.'
         );
     }
     
     if (!$season) {
         throw $this->createNotFoundException(
-            'Aucune saison avec l\'identifiant '.$seasonId.' n\'a été trouvée.'
+            'Aucune saison n\'a été trouvée.'
         );
 
     }
