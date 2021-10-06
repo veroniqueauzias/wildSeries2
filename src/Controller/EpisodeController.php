@@ -23,7 +23,7 @@ class EpisodeController extends AbstractController
         //number of element par page
         $limit = 10;
         //get page from url
-        $page = (int)$request->query->get('page',1); //$request->query->get récupère no de page en GET, renvoie un string, on force en int
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
         // get list of episodes for each page.
         $episodes = $episodeRepository->getPaginatedEpisodes($limit, $page);
         //get total episode to calculate number of pages

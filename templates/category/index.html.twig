@@ -11,6 +11,10 @@
   {% else %}
      Aucune catégorie trouvée.
   {% endfor %}
+
+   {#pagination#}
+   {% include '_paging.html.twig' %}
+   
    <a href="{{path('category_new')}}" class="btn btn-primary mt-3">Ajouter une catégorie</a>
    </div>
 </div>

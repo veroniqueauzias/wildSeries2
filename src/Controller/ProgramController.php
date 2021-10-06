@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
+use App\Repository\ProgramRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ProgramType;
@@ -21,16 +22,24 @@ class ProgramController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(): Response
-    {
-        $programs = $this->getDoctrine()
-             ->getRepository(Program::class)
-             ->findAll();
-
-         return $this->render(
-             'program/index.html.twig',
-             ['programs' => $programs]
-         );
+    public function index(ProgramRepository $programRepository, Request $request): Response
+    { 
+        //define pagination elements
+        //number of element par page
+        $limit = 4;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
+        // get list of episodes for each page.
+        $programs = $programRepository->getPaginatedPrograms($limit, $page);
+        //get total episode to calculate number of pages
+        $total = $programRepository->getTotalPrograms();
+        
+         return $this->render('program/index.html.twig',[
+                'programs' => $programs,
+                'total' => $total,
+                'limit' => $limit,
+                'page' => $page,
+             ]);
     }
 
     /**
