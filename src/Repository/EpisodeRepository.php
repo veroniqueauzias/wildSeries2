@@ -21,7 +21,7 @@ class EpisodeRepository extends ServiceEntityRepository
 
 
     /**
-     * Returns all Episodes per page
+     * Returns all episodes per page for pagination
      * @return void 
      */
     public function getPaginatedEpisodes($limit, $page) {
@@ -33,7 +33,7 @@ class EpisodeRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
      /**
-     * Returns nb of sites
+     * Returns nb of episods to calculaite number of pages
      */
     public function getTotalEpisodes() {
         $query = $this->createQueryBuilder('e')

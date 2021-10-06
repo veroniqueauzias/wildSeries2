@@ -189,7 +189,7 @@ li.page-item.active {
     color: $main-color;
 }
 
-.pagination > li > a:hover {
+.pagination > li > a:hover, .pagination > li > a:active {
   background-color: rgba($main-color, 0.05);
   color: rgba($main-color, 0.5)
 }
