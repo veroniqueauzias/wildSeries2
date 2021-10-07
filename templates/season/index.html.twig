@@ -20,7 +20,10 @@
         <tbody>
         {% for season in seasons %}
             <tr>
-                <td class="col-md-2">{{ season.program.title}}</td>
+                <td class="col-md-2">
+                    {{ season.program.title}}
+                    <div class="text-muted">{{season.program.category.name}}</div>
+                </td>
                 <td class="col-md-1 text-center">{{ season.number }}</td>
                 <td class= "col-md-1 text-center">{{ season.year }}</td>
                 <td class="col-md-6">{{ season.description| u.truncate(100, '...') }}</td>
