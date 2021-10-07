@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block title %}WS2 - modifier la série{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="title mt-5 text-center">Modifier {{program.title}}</h1>
+    {{ include('program/_form.html.twig', {'button_label': 'Modifier'}) }}   
+</div>
+<div class="returnLink">
+    <a href="{{path('program_show', { 'id': program.id }) }}">
+       Retour à la fiche de la série
+    </a>
+ </div>
+{% endblock %}

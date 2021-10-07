@@ -71,7 +71,7 @@ class SeasonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="season_edit", methods={"GET","POST"})
+     * @Route("/{id}/modifier", name="season_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Season $season): Response
     {
