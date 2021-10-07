@@ -5,18 +5,30 @@
 {% block body %}
 <div class="container mt-5">
    <h1 class="title mb-5">Liste des séries:</h1>
+<div class="flex flex-row justify-content-center">
    {% for program in programs %}
-      <a href="{{path('program_show', { 'id': program.id }) }}"><h2 class="subtitle">{{ loop.index }} - {{ program.title }} - Catégorie : {{ program.category.name }}</h2></a>
-       <p class="justify">{{ program.summary }}</p>
-   {% else %}
-      Aucune série trouvée.
-   {% endfor %}
-
-   {#pagination#}
-   {% include '_paging.html.twig' %}
-   
-   <a href="{{path('program_new')}}" class="btn btn-primary mt-3">Ajouter une série</a>
+   <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{program.poster}}" alt="{{program.title}} poster" style="height: 25rem;">
+      <div class="card-body flex flex-column">
+        <h5 class="subtitle">{{program.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Catégorie: {{program.category.name}}</h6>
+        <p class="card-text">{{program.summary| u.truncate(200, '...')}}.</p>
+        <div class="flex justify-content-end mt-auto">
+         <a href="{{path('program_show', { 'id': program.id }) }}" class="btn btn-primary">Voir plus</a>
+        </div>
+      </div>
+    </div>
+{% else %}
+Aucune série trouvée.
+{% endfor %}
 </div>
+   {#pagination#}
+   <div class="flex justify-content-center">
+      {% include '_paging.html.twig' %}
+   </div>
+   <div class="flex justify-content-center">
+      <a href="{{path('program_new')}}" class="btn btn-primary mt-3">Ajouter une série</a>
+   </div>
 <div class="returnLink">
    <a href="{{ path('app_index') }}">
       Retour à l'accueil

@@ -20,7 +20,10 @@
   {% endfor %}
 
    {#pagination#}
-   {% include '_paging.html.twig' %}
+   <div>
+      {% include '_paging.html.twig' %}
+   </div>
+  
    
    <a href="{{path('category_new')}}" class="btn btn-primary mt-3">Ajouter une catégorie</a>
    </div>
