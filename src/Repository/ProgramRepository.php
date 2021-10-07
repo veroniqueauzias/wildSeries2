@@ -25,7 +25,7 @@ class ProgramRepository extends ServiceEntityRepository
      */
     public function getPaginatedPrograms($limit, $page) {
         $query = $this->createQueryBuilder('p')
-            ->orderBy('p.title')
+            ->orderBy('p.category')
             ->setFirstResult(($page * $limit) - $limit) //ex: je suis à la page 1 et j'ai 5 éléments par page le 1er élément sera 1*5 -5 soit l'élément 0. A lapage 2: 2*5 - 5: le 1er élément sera le n° 5
             ->setMaxResults($limit)
         ;

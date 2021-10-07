@@ -20,7 +20,10 @@
         <tbody>
         {% for episode in episodes %}
             <tr>
-                <td class="col-md-2">{{ episode.season.program.title }}</td>
+                <td class="col-md-2">
+                    {{ episode.season.program.title }}
+                    <div class="text-muted">{{episode.season.program.category.name}}</div>
+                </td>
                 <td class="col-md-1">{{ episode.season.number }}</td>
                 <td class="col-md-1">{{ episode.number }}</td>
                 <td class="col-md-3">{{ episode.title }}</td>

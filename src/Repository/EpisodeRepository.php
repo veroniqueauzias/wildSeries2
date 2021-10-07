@@ -26,7 +26,13 @@ class EpisodeRepository extends ServiceEntityRepository
      */
     public function getPaginatedEpisodes($limit, $page) {
         $query = $this->createQueryBuilder('e')
-            ->orderBy('e.title')
+            ->join('e.season','s')
+            ->join('s.program', 'p')
+            ->join('p.category', 'c')
+            ->orderBy('c.name')
+            ->addOrderBy('p.title')
+            ->addOrderBy('s.number')
+            ->addOrderBy('e.number')
             ->setFirstResult(($page * $limit) - $limit) //ex: je suis à la page 1 et j'ai 5 éléments par page le 1er élément sera 1*5 -5 soit l'élément 0. A lapage 2: 2*5 - 5: le 1er élément sera le n° 5
             ->setMaxResults($limit)
         ;

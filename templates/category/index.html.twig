@@ -7,13 +7,23 @@
    <h1 class="title mb-5 text-center">Liste des categories:</h1>
    <div class="flex flex-column align-items-center">
       {% for category in categories %}
-      <a href="{{path('category_show', {'categoryName' : category.name}) }}"><h2 class="subtitle">{{ loop.index }} - {{ category.name }}</h2></a>
+      <div class="card categCard text-center mb-1">
+         <div class="card-body">
+            <a href="{{path('category_show', {'categoryName' : category.name}) }}">
+                  <img src="{{ asset('build/images/'~category.name~'.png')}}" alt="{{category.name}}_icon" class="categIcon"/>
+                  <h2 class="subtitle categCardSub ms-2">{{ category.name }}</h2></a>
+            </a>
+         </div>
+       </div>
   {% else %}
      Aucune catégorie trouvée.
   {% endfor %}
 
    {#pagination#}
-   {% include '_paging.html.twig' %}
+   <div>
+      {% include '_paging.html.twig' %}
+   </div>
+  
    
    <a href="{{path('category_new')}}" class="btn btn-primary mt-3">Ajouter une catégorie</a>
    </div>
