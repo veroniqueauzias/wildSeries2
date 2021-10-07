@@ -8,7 +8,9 @@
 <div class="flex flex-row justify-content-center">
    {% for program in programs %}
    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{program.poster}}" alt="{{program.title}} poster" style="height: 25rem;">
+      <a href="{{path('program_show', { 'id': program.id }) }}">
+         <img class="card-img-top" src="{{program.poster}}" alt="{{program.title}} poster" style="height: 25rem;">
+      </a>
       <div class="card-body flex flex-column">
         <h5 class="subtitle">{{program.title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Catégorie: {{program.category.name}}</h6>
