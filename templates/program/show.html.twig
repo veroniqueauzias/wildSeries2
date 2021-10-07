@@ -8,7 +8,7 @@
       <div class="poster">
          <img class="posterImg align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
       </div>
-      <div class="media-body">
+      <div class="media-body" style="width:-webkit-fill-available;">
          <h1 class="title mt-0">{{ program.title }}</h1>
          <p class="justify">{{ program.summary }}</p>
          <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
@@ -26,6 +26,11 @@
              </div>
             {% endfor %}
          </div>
+         <div class = "flex flex-row justify-content-between">
+            <a href="{{ path('program_edit', {'id': program.id}) }}" class="btn btn-primary col-md-2 mt-3">Modifier</a>
+                {{ include('program/_delete_form.html.twig') }}
+          
+        </div>
       </div>
    </div>
 </div>

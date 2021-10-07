@@ -71,7 +71,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route("/{id}/modifier", name="episode_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Episode $episode): Response
     {

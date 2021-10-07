@@ -142,4 +142,38 @@ class ProgramController extends AbstractController
         ]);
     
     }
+
+    /**
+     * @Route("/{id}/modifier", name="edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Program $program): Response
+    {
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('program_show',['id' => $program->getId()]);
+        }
+
+        return $this->renderForm('program/edit.html.twig', [
+            'program' => $program,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Request $request, Program $program): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$program->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($program);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
