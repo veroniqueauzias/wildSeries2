@@ -25,7 +25,10 @@ class SeasonRepository extends ServiceEntityRepository
      */
     public function getPaginatedSeasons($limit, $page) {
         $query = $this->createQueryBuilder('s')
-            ->orderBy('s.number')
+            ->join('s.program', 'p')
+            ->join('p.category', 'c')
+            ->orderBy('c.name')
+            ->addorderBy('p.title')
             ->setFirstResult(($page * $limit) - $limit) //ex: je suis à la page 1 et j'ai 5 éléments par page le 1er élément sera 1*5 -5 soit l'élément 0. A lapage 2: 2*5 - 5: le 1er élément sera le n° 5
             ->setMaxResults($limit)
         ;
