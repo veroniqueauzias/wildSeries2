@@ -96,7 +96,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{categoryName}/modifier", name="edit", methods={"GET","POST"})
+     * @Route("/{id}/modifier", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Category $category): Response
     {
@@ -109,7 +109,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('category_show',['categoryName' => $category->getName()]);
         }
 
-        return $this->renderForm('episode/edit.html.twig', [
+        return $this->renderForm('category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
         ]);
