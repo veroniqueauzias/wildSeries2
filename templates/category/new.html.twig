@@ -4,16 +4,8 @@
 {% block body %}
 <div class="container">
     <h1 class="title mt-5 text-center">Ajouter une catégorie</h1>
-        {{ form_start(form) }}
-        <div class="row flex justify-content-center mt-3">
-            <div class="col-md-5">
-                {{ form_widget(form, {'attr': {'class': 'typeLabel'}}) }}
-            </div>
-        </div>
-        <div class="row flex justify-content-center">
-            <button type="submit" class="btn btn-primary col-2 mt-3">Ajouter</button>
-        </div>
-        {{ form_end(form) }}
+    {% include "category/_form.html.twig" %}      
+
 </div>
 <div class="returnLink">
     <a href="{{ path('category_index') }}">

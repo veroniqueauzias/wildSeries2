@@ -87,14 +87,46 @@ class CategoryController extends AbstractController
     }else{
         $programs = $this->getDoctrine()
         ->getRepository(Program::class)
-        ->findBy(['category' => $category],
-        ['id' => 'DESC'],
-        3);
+        ->findBy(['category' => $category]);
     }
     return $this->render('category/show.html.twig', [
         'category' => $category,
         'programs' => $programs,
     ]);
+    }
+
+    /**
+     * @Route("/{categoryName}/modifier", name="edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Category $category): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('category_show',['categoryName' => $category->getName()]);
+        }
+
+        return $this->renderForm('episode/edit.html.twig', [
+            'category' => $category,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Request $request, Category $category): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($category);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('category_show',['categoryName' => $category->getName()]);
     }
 
 }

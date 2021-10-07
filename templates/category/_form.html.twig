@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+<div class="row flex justify-content-center mt-3">
+    <div class="col-md-5">
+        {{ form_widget(form, {'attr': {'class': 'typeLabel'}}) }}
+    </div>
+</div>
+<div class="row flex justify-content-center">
+    <button type="submit" class="btn btn-primary col-2 mt-3">{{ button_label|default('Ajouter') }}</button>
+</div>
+{{ form_end(form) }}
