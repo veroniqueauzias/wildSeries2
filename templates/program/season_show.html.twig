@@ -17,12 +17,14 @@
           <div class="flex flex-row">
             {% for episode in episodes %}
             <div class="card" style="width: 18rem;">
-               <div class="card-body">
+               <div class="card-body flex flex-column">
                  <h5 class="card-title">{{episode.title}}</h5>
                  <h6 class="card-subtitle mb-2 text-muted">episode {{episode.number}}</h6>
                  <!-- use string-extra got from composer to get twig truncate filter to use with u filter-->
                  <p class="card-text">{{episode.synopsis | u.truncate(100, '...')}}</p>
-                 <a href="{{path('program_episode_show', { 'programId': program.id, 'seasonId':season.id, 'episodeId':episode.id }) }}" class="card-link">Voir plus</a>
+                 <div class="flex justify-content-end mt-auto">
+                     <a href="{{path('program_episode_show', { 'programId': program.id, 'seasonId':season.id, 'episodeId':episode.id }) }}" class="btn btn-primary">Voir plus</a>
+                 </div>
                </div>
              </div>
             {% endfor %}

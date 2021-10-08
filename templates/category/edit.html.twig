@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WS2 - categories{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="title mt-5 text-center">Modifier la categorie</h1>
+
+    {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <div class="flex justify-content-center">
+    {{ include('category/_delete_form.html.twig') }}
+    </div>
+</div>
+<div class="returnLink">
+    <a href="{{path('category_show', { 'categoryName': category.name }) }}">
+       Retour à la fiche de la catégorie
+    </a>
+ </div>
+   
+{% endblock %}

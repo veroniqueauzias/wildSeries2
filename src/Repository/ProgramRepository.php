@@ -40,6 +40,32 @@ class ProgramRepository extends ServiceEntityRepository
         return $query->getQuery()->getSingleScalarResult(); // get result retourne un tableau, getSingle.... retourne juste le chiffre
     }
 
+    /**
+     * Returns all programs for a category - ex for list of program in category_show
+     * @return void 
+     */
+    public function getCategPaginatedProgram($limit, $page, $category) {
+        $query = $this->createQueryBuilder('p')
+            ->where ('p.category = :category')
+            ->orderBy('p.title')
+            ->setFirstResult(($page * $limit) - $limit) //ex: je suis à la page 1 et j'ai 5 éléments par page le 1er élément sera 1*5 -5 soit l'élément 0. A lapage 2: 2*5 - 5: le 1er élément sera le n° 5
+            ->setMaxResults($limit)
+            ->setParameter('category',$category)
+        ;
+        return $query->getQuery()->getResult();
+    }
+     /**
+     * Returns nb of programs to calculaite number of pages
+     */
+    public function getTotalCategPrograms($category) {
+        $query = $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->where ('p.category = :category')
+            ->setParameter('category',$category);
+            
+        return $query->getQuery()->getSingleScalarResult(); // get result retourne un tableau, getSingle.... retourne juste le chiffre
+    }
+
 
     // /**
     //  * @return Program[] Returns an array of Program objects
