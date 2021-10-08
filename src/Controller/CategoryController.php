@@ -10,6 +10,7 @@ use App\Entity\Program;
 use App\Repository\CategoryRepository;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 /**
 * @Route("/categories", name="category_")
 */
@@ -96,7 +97,8 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/modifier", name="edit", methods={"GET","POST"})
+     * @Route("/{categoryName}/modifier", name="edit", methods={"GET","POST"})
+     * @ParamConverter("category", class="App\Entity\Category", options={"mapping": {"categoryName": "name"}})
      */
     public function edit(Request $request, Category $category): Response
     {
@@ -126,7 +128,7 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('category_show',['categoryName' => $category->getName()]);
+        return $this->redirectToRoute('category_index');
     }
 
 }

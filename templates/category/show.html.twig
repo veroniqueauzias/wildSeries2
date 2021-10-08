@@ -17,23 +17,19 @@
                  <h6 class="card-subtitle mb-2 text-muted">Pays: {{program.country}}</h6>
                  <p class="card-text">{{program.summary| u.truncate(200, '...')}}.</p>
                  <div class="flex justify-content-end mt-auto">
-                  <a href="{{path('program_show', { 'id': program.id }) }}" class="btn btn-primary">Voir plus</a>
+                     <a href="{{path('program_show', { 'id': program.id }) }}" class="btn btn-primary">Voir plus</a>
                  </div>
                </div>
-             </div>
+            </div>
              {% else %}
                Aucune série trouvée.
             {% endfor %}      
          </div>
        
-             <div class = "flex flex-row justify-content-between">
-            <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-primary col-md-2 mt-3">Modifier</a>
+             <div class = "flex flex-row justify-content-around mt-5">
+            <a href="{{ path('category_edit', {'categoryName': category.name}) }}" class="btn btn-primary col-md-2 mt-3">Modifier la catégorie</a>
                 {{ include('category/_delete_form.html.twig') }}
-        </div>
-        
-        
-      </div>
-   </div>
+            </div>
 </div>
 
 <div class="returnLink">
