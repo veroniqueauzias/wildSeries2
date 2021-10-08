@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use App\Entity\Program;
 use App\Repository\CategoryRepository;
+use App\Repository\ProgramRepository;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -74,25 +75,28 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/{categoryName}", methods={"GET"}, requirements={"categoryName"="\w+"}, name="show")
+     * @ParamConverter("category", class="App\Entity\Category", options={"mapping": {"categoryName": "name"}})
      * @return Response
      */
-   public function show(string $categoryName) : Response
+   public function show(Request $request, Category $category, ProgramRepository $programRepository) : Response
     {
-        $category = $this->getDoctrine()
-        ->getRepository(Category::class)
-        ->findOneBy(['name' => $categoryName]);
-    if (!$category) {
-        throw $this->createNotFoundException(
-            'Aucune catégorie avec le nom : '.$categoryName.' n\'a été trouvée.'
-        );
-    }else{
-        $programs = $this->getDoctrine()
-        ->getRepository(Program::class)
-        ->findBy(['category' => $category]);
-    }
+     //define pagination elements
+        //number of element par page
+        $limit = 5;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
+        // get list of episodes for each page.
+        $programs = $programRepository->getCategPaginatedProgram($limit, $page, $category);
+        //get total episode to calculate number of pages
+        $total = $programRepository->getTotalCategPrograms($category);
+    
+    
     return $this->render('category/show.html.twig', [
         'category' => $category,
         'programs' => $programs,
+        'limit' => $limit,
+        'page' => $page,
+        'total' => $total,
     ]);
     }
 
