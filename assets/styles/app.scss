@@ -168,6 +168,18 @@ footer a:hover {
   color: $primary;
 }
 
+/*upload forms*/
+.vich-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* upload forms image size*/
+.vich-image>a>img {
+  max-width: 200px;
+}
+
 /*tables*/
 
 .tableTitles {
