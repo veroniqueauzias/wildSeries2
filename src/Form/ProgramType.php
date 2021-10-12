@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProgramType extends AbstractType
 {
@@ -22,7 +23,7 @@ class ProgramType extends AbstractType
                 'label' => 'Résumé',
             ])
             ->add('poster', TextType::class, [
-                'label' => 'url de l\'image',
+                'label' => 'Nom de l\'image',
             ])
             ->add('country', TextType::class, [
                 'label' => 'Pays',
@@ -33,6 +34,15 @@ class ProgramType extends AbstractType
             ->add('category', null, 
             ['choice_label' => 'name',
             ])
+            ->add('imageFile', VichImageType::class, [
+                'label' =>'affiche de la série',
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'delete_label' => 'Supprimer',
+                'download_uri' => true, // not mandatory, default is true
+                'download_label' => 'télécharger l\'image',
+             
+    ])
         ;
     }
 

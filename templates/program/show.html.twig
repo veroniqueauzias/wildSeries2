@@ -6,7 +6,7 @@
 <div class="container mt-5">
    <div class="programDetails flex">
       <div class="poster">
-         <img class="posterImg align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+         <img class="posterImg align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
       </div>
       <div class="media-body" style="width:-webkit-fill-available;">
          <h1 class="title mt-0">{{ program.title }}</h1>

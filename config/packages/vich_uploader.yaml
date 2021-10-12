@@ -1,0 +1,22 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        posters:
+            uri_prefix: /uploads/images/posters
+            upload_destination: '%upload_poster_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
+        icons:
+            uri_prefix: '/uploads/images/icons'
+            upload_destination: '%upload_icon_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
