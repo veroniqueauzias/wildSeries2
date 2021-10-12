@@ -22,9 +22,6 @@ class ProgramType extends AbstractType
             ->add('summary', TextareaType::class, [
                 'label' => 'Résumé',
             ])
-            ->add('poster', TextType::class, [
-                'label' => 'Nom de l\'image',
-            ])
             ->add('country', TextType::class, [
                 'label' => 'Pays',
             ])
