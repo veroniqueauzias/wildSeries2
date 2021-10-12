@@ -10,7 +10,7 @@
       <div class="card categCard text-center mb-1">
          <div class="card-body">
             <a href="{{path('category_show', {'categoryName' : category.name}) }}">
-                  <img src="{{ asset('build/images/'~category.name~'.png')}}" alt="{{category.name}}_icon" class="categIcon"/>
+                  <img src="{{ vich_uploader_asset(category) }}" alt="{{category.name}}_icon" class="categIcon"/>
                   <h2 class="subtitle categCardSub ms-2">{{ category.name }}</h2></a>
             </a>
          </div>

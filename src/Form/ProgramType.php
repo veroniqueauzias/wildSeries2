@@ -35,6 +35,7 @@ class ProgramType extends AbstractType
             ['choice_label' => 'name',
             ])
             ->add('imageFile', VichImageType::class, [
+                'label' =>'affiche de la série',
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'delete_label' => 'Supprimer',
