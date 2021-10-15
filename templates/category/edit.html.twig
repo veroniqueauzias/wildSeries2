@@ -12,11 +12,25 @@
     {{ include('category/_delete_form.html.twig') }}
     </div>
 </div>
-{#
+{% if category.name %}
+
+{# as category name is needed to display category_show, 
+    make condition to return back to category index if name is missing 
+    (eg; in edit form, if name is blank, return an error because back to category_show link
+    can't be desplayed")
+    #}
+
 <div class="returnLink">
     <a href="{{path('category_show', { 'categoryName': category.name }) }}">
        Retour à la fiche de la catégorie
     </a>
  </div>
-   #}
+ {% else %}
+ <div class="returnLink">
+    <a href="{{path('category_index')}}">
+        Retour à la liste des catégories
+     </a>
+ </div>
+ 
+{% endif %}
 {% endblock %}
