@@ -25,7 +25,8 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     *  @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @Assert\Length(max="255", maxMessage="Mon nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $name;
 
@@ -38,6 +39,12 @@ class Category
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="icons", fileNameProperty="iconName")
+     * @Assert\File(
+        *   maxSize = "1M",
+        *   maxSizeMessage = "je ne dois pas faire plus de {{ limit }}{{ suffix }}",
+        *   mimeTypes = {"image/jpeg", "image/png"},
+        *   mimeTypesMessage = "Je ne dois être que sous la forme jpeg ou png"
+      * )
      * 
      * @var File|null
      */
