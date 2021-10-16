@@ -17,6 +17,7 @@ class CategoryType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom de la catégorie',
                 
+                
             ])
             ->add('iconFile', VichImageType::class, [
                 'required' => false,

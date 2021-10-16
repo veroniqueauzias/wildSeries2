@@ -9,10 +9,15 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @Vich\Uploadable
+ * @UniqueEntity(
+ *  fields = "name",
+ *  message ="Cette catégorie existe déjà"
+ * )
  */
 class Category
 {
