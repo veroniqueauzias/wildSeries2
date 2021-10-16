@@ -7,7 +7,12 @@
 <div class="container mt-5">
     <div class="programDetails flex">
        <div class="poster">
-          <img class="posterImg align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
+           {# display uploaded program poster if exists, default poster otherwise#}
+         {% if program.poster %}
+         <img class="card-img-top" src="{{ vich_uploader_asset(program) }}" alt="{{program.title}} poster" style="width: 30rem;">
+         {% else %}
+         <img src="{{ asset('build/images/default_poster.png') }}" alt="{{program.title}} poster" style="width: 30rem;"/>
+         {% endif %}
        </div>
        <div class="media-body">
           <h1 class="title mt-0">{{ episode.title }}</h1>
