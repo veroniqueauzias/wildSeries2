@@ -119,7 +119,7 @@ class Program
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -131,7 +131,7 @@ class Program
         return $this->summary;
     }
 
-    public function setSummary(string $summary): self
+    public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
 
@@ -167,7 +167,7 @@ class Program
         return $this->country;
     }
 
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -179,7 +179,7 @@ class Program
         return $this->year;
     }
 
-    public function setYear(int $year): self
+    public function setYear(?int $year): self
     {
         $this->year = $year;
 

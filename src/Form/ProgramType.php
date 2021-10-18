@@ -42,8 +42,6 @@ class ProgramType extends AbstractType
                         Elle a été diffusée au Etats-Unis à partir du 15 octobre 1951. (source:Wikipédia) Vous ne pouvez donc pas entrer une année inférieure.'
                     ])
                 ]
-                
-                
             ])
             ->add('category', null, 
             ['choice_label' => 'name',

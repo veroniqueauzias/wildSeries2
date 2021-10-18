@@ -6,9 +6,15 @@ use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
+ * @UniqueEntity(
+ *      fields={"number", "program"},
+ *      message="Cette saison existe déjà pour cette série"
+ * )
  */
 class Season
 {
@@ -21,22 +27,31 @@ class Season
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="il me faut mon numéro!")
+     * @Assert\Length(
+     * max=2,
+     * maxMessage = "pas plus de 2 chiffres!"
+     * )
+     * 
      */
     private $number;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="il faut préciser l'année de ma 1ère diffusion.")
      */
     private $year;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Les internautes ont besoin de mon résumé!")
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Il faut m'associer à une série!")
      */
     private $program;
 
@@ -60,7 +75,7 @@ class Season
         return $this->number;
     }
 
-    public function setNumber(int $number): self
+    public function setNumber(?int $number): self
     {
         $this->number = $number;
 
@@ -72,7 +87,7 @@ class Season
         return $this->year;
     }
 
-    public function setYear(int $year): self
+    public function setYear(?int $year): self
     {
         $this->year = $year;
 
@@ -84,7 +99,7 @@ class Season
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
