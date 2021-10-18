@@ -30,7 +30,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     *  @Assert\NotBlank(message="il me faut un nom!")
+     * @Assert\NotBlank(message="il me faut un nom!")
      * @Assert\Length(max="255", maxMessage="Mon nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $name;
