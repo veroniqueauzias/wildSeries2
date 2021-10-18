@@ -8,11 +8,19 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
 
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
  * @Vich\Uploadable
+ * @UniqueEntity(
+ *  fields = "title",
+ *  message ="Cette série existe déjà!"
+ * )
  */
 class Program
 {
@@ -25,11 +33,14 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="il me faut un titre!")
+     * @Assert\Length(max="255", maxMessage="Mon titre est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Les internautes ont besoin de mon résumé!")
      */
     private $summary;
 
@@ -42,6 +53,12 @@ class Program
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="posters", fileNameProperty="poster")
+     * * @Assert\File(
+        *   maxSize = "1M",
+        *   maxSizeMessage = "je ne dois pas faire plus de {{ limit }}{{ suffix }}",
+        *   mimeTypes = {"image/jpeg", "image/png"},
+        *   mimeTypesMessage = "Je ne dois être que sous la forme jpeg ou png"
+      * )
      * 
      * @var File|null
      */
@@ -64,16 +81,20 @@ class Program
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Je suis perdu sans catégorie")
      */
     private $category;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Il me faut mon pays!")
+     * 
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="il faut préciser l'année de ma 1ère diffusion.")
      */
     private $year;
 
@@ -98,7 +119,7 @@ class Program
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -110,7 +131,7 @@ class Program
         return $this->summary;
     }
 
-    public function setSummary(string $summary): self
+    public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
 
@@ -146,7 +167,7 @@ class Program
         return $this->country;
     }
 
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -158,7 +179,7 @@ class Program
         return $this->year;
     }
 
-    public function setYear(int $year): self
+    public function setYear(?int $year): self
     {
         $this->year = $year;
 

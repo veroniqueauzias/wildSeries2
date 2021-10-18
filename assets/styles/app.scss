@@ -168,6 +168,11 @@ footer a:hover {
   color: $primary;
 }
 
+label.required:after {
+  content: "* ";
+  color: red;
+}
+
 /*upload forms*/
 .vich-image {
   display: flex;

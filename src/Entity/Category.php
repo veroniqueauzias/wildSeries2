@@ -8,10 +8,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @Vich\Uploadable
+ * @UniqueEntity(
+ *  fields = "name",
+ *  message ="Cette catégorie existe déjà"
+ * )
  */
 class Category
 {
@@ -24,6 +30,8 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="il me faut un nom!")
+     * @Assert\Length(max="255", maxMessage="Mon nom est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $name;
 
@@ -36,6 +44,12 @@ class Category
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="icons", fileNameProperty="iconName")
+     * @Assert\File(
+        *   maxSize = "1M",
+        *   maxSizeMessage = "je ne dois pas faire plus de {{ limit }}{{ suffix }}",
+        *   mimeTypes = {"image/jpeg", "image/png"},
+        *   mimeTypesMessage = "Je ne dois être que sous la forme jpeg ou png"
+      * )
      * 
      * @var File|null
      */
@@ -109,7 +123,7 @@ class Category
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 

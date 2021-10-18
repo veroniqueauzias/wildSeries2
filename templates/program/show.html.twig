@@ -6,12 +6,18 @@
 <div class="container mt-5">
    <div class="programDetails flex">
       <div class="poster">
-         <img class="posterImg align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
+         {# display uploaded program poster if exists, default poster otherwise#}
+         {% if program.poster %}
+         <img class="card-img-top" src="{{ vich_uploader_asset(program) }}" alt="{{program.title}} poster" style="width: 30rem;">
+         {% else %}
+         <img src="{{ asset('build/images/default_poster.png') }}" alt="{{program.title}} poster" style="width: 30rem;"/>
+         {% endif %}      
       </div>
       <div class="media-body" style="width:-webkit-fill-available;">
          <h1 class="title mt-0">{{ program.title }}</h1>
          <p class="justify">{{ program.summary }}</p>
          <p><span class="subtitle">Catégorie :</span> {{ program.category.name }}</p>
+         <p><span class="subtitle">1ère diffusion :</span> {{ program.year }}</p>
          <p><span class="subtitle">Saisons :</p>
          <div class="flex flex-row">
             {% for season in seasons %}
