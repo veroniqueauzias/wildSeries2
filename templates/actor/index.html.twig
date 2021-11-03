@@ -23,7 +23,9 @@
                 <td>{{ actor.lastName }}</td>
                 <td>
                     {% for program in actor.programs %}
-                    {{program.title}} | 
+                        <a href="{{ path('program_show', {'id': program.id}) }}">
+                            {{program.title}}
+                        </a> |
                     {% endfor %}
                 </td>
                 <td>

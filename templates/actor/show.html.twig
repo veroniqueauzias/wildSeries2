@@ -16,7 +16,11 @@
                 <th>Séries</th>
                 <td>
                     {% for program in actor.programs %}
-                    <p>{{program.title}}</p>
+                    <p>
+                        <a href="{{ path('program_show', {'id': program.id}) }}">
+                            {{program.title}}
+                        </a>
+                    </p>
                     {% endfor %}
                 </td>
             </tr>
