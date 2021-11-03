@@ -18,10 +18,23 @@ class ActorController extends AbstractController
     /**
      * @Route("/", name="actor_index", methods={"GET"})
      */
-    public function index(ActorRepository $actorRepository): Response
+    public function index(ActorRepository $actorRepository, Request $request): Response
     {
+         //define pagination elements
+        //number of element par page
+        $limit = 10;
+        //get page from url
+        $page = (int)$request->query->get('page',1); //$request->query->get retrive page number in GET, returns a string, we force it into int
+        // get list of episodes for each page.
+        $actors = $actorRepository->getPaginatedActors($limit, $page);
+        //get total episode to calculate number of pages
+        $total = $actorRepository->getTotalActors();
+
         return $this->render('actor/index.html.twig', [
-            'actors' => $actorRepository->findAll(),
+            'actors' => $actors,
+            'total' => $total,
+            'limit' => $limit,
+            'page' => $page,
         ]);
     }
 

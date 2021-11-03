@@ -19,6 +19,27 @@ class ActorRepository extends ServiceEntityRepository
         parent::__construct($registry, Actor::class);
     }
 
+     /**
+     * Returns all programs per page for pagination
+     * @return void 
+     */
+    public function getPaginatedActors($limit, $page) {
+        $query = $this->createQueryBuilder('a')
+            ->orderBy('a.lastName')
+            ->setFirstResult(($page * $limit) - $limit) //ex: je suis à la page 1 et j'ai 5 éléments par page le 1er élément sera 1*5 -5 soit l'élément 0. A lapage 2: 2*5 - 5: le 1er élément sera le n° 5
+            ->setMaxResults($limit)
+        ;
+        return $query->getQuery()->getResult();
+    }
+     /**
+     * Returns nb of programs to calculaite number of pages
+     */
+    public function getTotalActors() {
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a)');
+        return $query->getQuery()->getSingleScalarResult(); // get result retourne un tableau, getSingle.... retourne juste le chiffre
+    }
+
     // /**
     //  * @return Actor[] Returns an array of Actor objects
     //  */
