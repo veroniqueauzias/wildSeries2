@@ -1,34 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actor{% endblock %}
+{% block title %}WS2 - {{actor.firstname}} {{actor.lastName}} {% endblock %}
 
 {% block body %}
-    <h1>Actor</h1>
+<div class="container mt-5">
+    <h1 class="title mt-5">{{actor.firstname}} {{actor.lastName}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ actor.id }}</td>
+                <th>Date de naissance</th>
+                <td>{{ actor.birthDate ? actor.birthDate|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
-                <td>{{ actor.firstname }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ actor.lastName }}</td>
-            </tr>
-            <tr>
-                <th>BirthDate</th>
-                <td>{{ actor.birthDate ? actor.birthDate|date('Y-m-d') : '' }}</td>
+                <th>Séries</th>
+                <td>
+                    {% for program in actor.programs %}
+                    <p>{{program.title}}</p>
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('actor_index') }}">back to list</a>
-
-    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
-
-    {{ include('actor/_delete_form.html.twig') }}
+    <div class = "flex flex-row justify-content-between">
+        <a href="{{ path('actor_edit', {'id': actor.id}) }}" class="btn btn-primary col-md-2 mt-3">Modifier</a>
+            {{ include('actor/_delete_form.html.twig') }}
+    </div>
+</div>
+    <div class="mt-3">
+        <a href="{{ path('actor_index') }}" class="returnLink">Retour à la liste des acteurs</a>
+    </div>
+    
 {% endblock %}
