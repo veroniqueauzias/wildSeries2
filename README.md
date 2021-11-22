@@ -1,3 +1,5 @@
+This project is based on Wild Code School Symfony Quests
+
 REQUIREMENTS
 Php ^7.2
 check composer is installed
