@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WS2-Acteurs{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="title mt-5">Liste des acteurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr class="tableTitles">
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Séries</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+            <tr>
+            
+                <td>{{ actor.firstname }}</td>
+                <td>{{ actor.lastName }}</td>
+                <td>
+                    {% for program in actor.programs %}
+                        <a href="{{ path('program_show', {'id': program.id}) }}">
+                            {{program.title}}
+                        </a> |
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('actor_show', {'id': actor.id}) }}">voir</a>
+                    <a href="{{ path('actor_edit', {'id': actor.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun acteur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#pagination#}
+{% include '_paging.html.twig' %}
+
+    <a href="{{ path('actor_new') }}" class="btn btn-primary mt-3">Nouvel Acteur</a>
+</div>
+
+{% endblock %}
